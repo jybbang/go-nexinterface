@@ -20,9 +20,7 @@ func NewBookCreatedEvent(source *entities.Book) *BookCreatedEvent {
 }
 
 func BookCreatedEventHandler(notification interface{}) {
-	event, ok := notification.(*BookCreatedEvent)
-	if !ok {
-		panic(core.ErrConflict.Error())
-	}
+	event := notification.(*BookCreatedEvent)
+
 	core.Log.Info("event handler", event.Topic)
 }

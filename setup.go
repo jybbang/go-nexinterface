@@ -13,9 +13,7 @@ func applicationSetup() {
 	mediator := core.GetMediator()
 
 	mediator.AddHandler(new(commands.CreateBookCommand), commands.CreateBookCommandHandler)
-
 	mediator.AddNotificationHandler(new(events.BookCreatedEvent), events.BookCreatedEventHandler)
-
 	mediator.AddMiddleware(middlewares.NewLogMiddleware())
 
 	Log.Info("application initialized")

@@ -14,10 +14,7 @@ type CreateBookCommand struct {
 }
 
 func CreateBookCommandHandler(request interface{}) interface{} {
-	command, ok := request.(*CreateBookCommand)
-	if !ok {
-		panic(core.ErrConflict.Error())
-	}
+	command := request.(*CreateBookCommand)
 
 	dto := new(entities.Book)
 	dto.ID = uuid.New()
