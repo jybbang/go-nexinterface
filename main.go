@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"net/http"
 
 	"github.com/jybbang/go-core-architecture/core"
 	"github.com/jybbang/nexinterface/src/books/commands"
@@ -15,6 +16,8 @@ func init() {
 	Log = logger.Sugar()
 
 	core.SetLogger(logger)
+	core.AddMetrics(core.MetricsSettings{Endpoint: "/metrics"})
+	core.AddTracing(core.TracingSettings{ServiceName: "demo"})
 }
 
 func main() {
@@ -35,4 +38,6 @@ func main() {
 	book := core.GetMediator().Send(ctx, cmd)
 
 	Log.Info(book.V)
+
+	http.ListenAndServe(":9000", nil)
 }
