@@ -1,6 +1,8 @@
 package commands
 
 import (
+	"context"
+
 	"github.com/google/uuid"
 	"github.com/jybbang/go-core-architecture/core"
 	"github.com/jybbang/nexinterface/src/books/events"
@@ -13,7 +15,7 @@ type CreateBookCommand struct {
 	Price  float64
 }
 
-func CreateBookCommandHandler(request interface{}) interface{} {
+func CreateBookCommandHandler(ctx context.Context, request interface{}) core.Result {
 	command := request.(*CreateBookCommand)
 
 	dto := new(entities.Book)
@@ -23,12 +25,12 @@ func CreateBookCommandHandler(request interface{}) interface{} {
 	dto.Price = command.Price
 
 	repository := core.GetRepositoryService(dto)
-	repository.Add(dto)
+	repository.Add(ctx, dto)
 
 	eventBus := core.GetEventBus()
 	eventBus.AddDomainEvent(events.NewBookCreatedEvent(dto))
-	defer eventBus.PublishDomainEvents()
+	defer eventBus.PublishDomainEvents(ctx)
 
-	repository.Find(dto, dto.ID)
-	return dto
+	repository.Find(ctx, dto, dto.ID)
+	return core.Result{V: dto}
 }

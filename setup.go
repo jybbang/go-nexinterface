@@ -20,14 +20,12 @@ func applicationSetup() {
 }
 
 func infrastructureSetup() {
-	mock := mocks.NewMockAdapter()
-
-	core.GetEventBus().SetMessaingAdapter(mock)
-	core.GetStateService().SetStateAdapter(mock)
+	core.GetEventBus().SetMessaingAdapter(mocks.NewMockAdapter())
+	core.GetStateService().SetStateAdapter(mocks.NewMockAdapter())
 
 	bookRepository := core.GetRepositoryService(new(entities.Book))
-	bookRepository.SetQueryRepositoryAdapter(mock)
-	bookRepository.SetCommandRepositoryAdapter(mock)
+	bookRepository.SetQueryRepositoryAdapter(mocks.NewMockAdapter())
+	bookRepository.SetCommandRepositoryAdapter(mocks.NewMockAdapter())
 
 	Log.Info("infrastructure initialized")
 }
