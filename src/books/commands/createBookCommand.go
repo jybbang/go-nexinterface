@@ -27,7 +27,7 @@ func CreateBookCommandHandler(ctx context.Context, request interface{}) core.Res
 	repository := core.GetRepositoryService(dto)
 	repository.Add(ctx, dto)
 
-	eventBus := core.GetEventBus()
+	eventBus := core.GetEventbus()
 	eventBus.AddDomainEvent(events.NewBookCreatedEvent(dto))
 	defer eventBus.PublishDomainEvents(ctx)
 

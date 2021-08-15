@@ -24,7 +24,7 @@ func NewBookCreatedEvent(source *entities.Book) *BookCreatedEvent {
 func BookCreatedEventHandler(ctx context.Context, notification interface{}) error {
 	event := notification.(*BookCreatedEvent)
 
-	core.Log.Info("event handler", event.Topic)
+	core.Log.Infow("event handler", "topic", event.Topic)
 
 	return nil
 }

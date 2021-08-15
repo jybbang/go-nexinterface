@@ -10,7 +10,7 @@ import (
 )
 
 func applicationSetup() {
-	mediator := core.GetMediator()
+	mediator := core.NewMediatorBuilder().Build()
 
 	mediator.AddHandler(new(commands.CreateBookCommand), commands.CreateBookCommandHandler)
 	mediator.AddNotificationHandler(new(events.BookCreatedEvent), events.BookCreatedEventHandler)
@@ -20,12 +20,14 @@ func applicationSetup() {
 }
 
 func infrastructureSetup() {
-	core.GetEventBus().SetMessaingAdapter(mocks.NewMockAdapter())
-	core.GetStateService().SetStateAdapter(mocks.NewMockAdapter())
+	core.NewEventBusBuilder().MessaingAdapter(mocks.NewMockAdapter()).Build()
 
-	bookRepository := core.GetRepositoryService(new(entities.Book))
-	bookRepository.SetQueryRepositoryAdapter(mocks.NewMockAdapter())
-	bookRepository.SetCommandRepositoryAdapter(mocks.NewMockAdapter())
+	core.NewStateServiceBuilder().StateAdapter(mocks.NewMockAdapter()).Build()
+
+	core.NewRepositoryServiceBuilder(new(entities.Book)).
+		QueryRepositoryAdapter(mocks.NewMockAdapter()).
+		CommandRepositoryAdapter(mocks.NewMockAdapter()).
+		Build()
 
 	Log.Info("infrastructure initialized")
 }

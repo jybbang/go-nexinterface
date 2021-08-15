@@ -14,7 +14,7 @@ func init() {
 	logger, _ := zap.NewProduction()
 	Log = logger.Sugar()
 
-	core.SetupLogger(logger)
+	core.SetLogger(logger)
 }
 
 func main() {
