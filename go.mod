@@ -4,6 +4,6 @@ go 1.16
 
 require (
 	github.com/google/uuid v1.3.0
-	github.com/jybbang/go-core-architecture v0.1.0
+	github.com/jybbang/go-core-architecture v0.1.3
 	go.uber.org/zap v1.19.0
 )

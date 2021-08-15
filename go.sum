@@ -225,6 +225,10 @@ github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfV
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/jybbang/go-core-architecture v0.1.0 h1:IrxVphOWqGgHeX9hBDP9I8DX6l91N+NgQL8U8BjDVNg=
 github.com/jybbang/go-core-architecture v0.1.0/go.mod h1:uqKETz0g6mMOzAyyc6llVFYDNHgfifLN4bHth5j91gg=
+github.com/jybbang/go-core-architecture v0.1.2 h1:NQHNe7YANtVw9HquPU5NohlW5zrnsgh7vDgx/2z1DTo=
+github.com/jybbang/go-core-architecture v0.1.2/go.mod h1:uqKETz0g6mMOzAyyc6llVFYDNHgfifLN4bHth5j91gg=
+github.com/jybbang/go-core-architecture v0.1.3 h1:nJas2sfihWVYLzWPm/MielHeX0XyIAc2iMTC7Jamj4g=
+github.com/jybbang/go-core-architecture v0.1.3/go.mod h1:uqKETz0g6mMOzAyyc6llVFYDNHgfifLN4bHth5j91gg=
 github.com/karrick/godirwalk v1.8.0/go.mod h1:H5KPZjojv4lE+QYImBI8xVtrBRgYrIVsaRPx4tDPEn4=
 github.com/karrick/godirwalk v1.10.3/go.mod h1:RoGL9dQei4vP9ilrpETWE8CLOZ1kiN0LhBygSwrAsHA=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
