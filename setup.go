@@ -22,7 +22,7 @@ func applicationSetup() {
 }
 
 func infrastructureSetup() {
-	core.NewEventBusBuilder().
+	core.NewEventbusBuilder().
 		MessaingAdapter(mocks.NewMockAdapter()).
 		Build()
 
