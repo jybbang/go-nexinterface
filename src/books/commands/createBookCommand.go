@@ -15,7 +15,7 @@ type CreateBookCommand struct {
 	Price  float64
 }
 
-func CreateBookCommandHandler(ctx context.Context, services core.Services, request interface{}) core.Result {
+func CreateBookCommandHandler(ctx context.Context, request interface{}) core.Result {
 	command := request.(*CreateBookCommand)
 
 	dto := new(entities.Book)
@@ -27,9 +27,8 @@ func CreateBookCommandHandler(ctx context.Context, services core.Services, reque
 	repository := core.GetRepositoryService(dto)
 	repository.Add(ctx, dto)
 
-	services.Eventbus.AddDomainEvent(events.NewBookCreatedEvent(dto))
+	core.GetEventbus().AddDomainEvent(events.NewBookCreatedEvent(dto))
 
 	repository.Find(ctx, dto, dto.ID)
-
 	return core.Result{V: dto}
 }
