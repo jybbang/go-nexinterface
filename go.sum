@@ -225,6 +225,8 @@ github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfV
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/jybbang/go-core-architecture v0.0.14 h1:r4qeLosN2OxfXyyotc1qwLZlif9oyLBNNRkr5KXgh24=
 github.com/jybbang/go-core-architecture v0.0.14/go.mod h1:uqKETz0g6mMOzAyyc6llVFYDNHgfifLN4bHth5j91gg=
+github.com/jybbang/go-core-architecture v0.0.15 h1:sfXeai+K5cUKswLJIUYjhDkQ7e/s0zYscQ4VX37ulho=
+github.com/jybbang/go-core-architecture v0.0.15/go.mod h1:uqKETz0g6mMOzAyyc6llVFYDNHgfifLN4bHth5j91gg=
 github.com/karrick/godirwalk v1.8.0/go.mod h1:H5KPZjojv4lE+QYImBI8xVtrBRgYrIVsaRPx4tDPEn4=
 github.com/karrick/godirwalk v1.10.3/go.mod h1:RoGL9dQei4vP9ilrpETWE8CLOZ1kiN0LhBygSwrAsHA=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
