@@ -11,30 +11,33 @@ import (
 
 func applicationSetup() {
 	mediator := core.NewMediatorBuilder().
+		AddPerformanceMeasure(logger).
 		AddHandler(new(commands.CreateBookCommand), commands.CreateBookCommandHandler).
 		AddNotificationHandler(new(events.BookCreatedEvent), events.BookCreatedEventHandler).
 		Build()
 
 	mediator.
-		AddMiddleware(middlewares.NewLogMiddleware()).
+		AddMiddleware(middlewares.NewZapLogMiddleware(logger)).
 		AddMiddleware(middlewares.NewValidationMiddleware())
 
-	Log.Info("application initialized")
+	log.Info("application initialized")
 }
 
 func infrastructureSetup() {
+	mock := mocks.NewMockAdapter(mocks.MockSettings{Log: log})
+
 	core.NewEventbusBuilder().
-		MessaingAdapter(mocks.NewMockAdapter()).
+		MessaingAdapter(mock).
 		Build()
 
 	core.NewStateServiceBuilder().
-		StateAdapter(mocks.NewMockAdapter()).
+		StateAdapter(mock).
 		Build()
 
 	core.NewRepositoryServiceBuilder(new(entities.Book)).
-		QueryRepositoryAdapter(mocks.NewMockAdapter()).
-		CommandRepositoryAdapter(mocks.NewMockAdapter()).
+		QueryRepositoryAdapter(mock).
+		CommandRepositoryAdapter(mock).
 		Build()
 
-	Log.Info("infrastructure initialized")
+	log.Info("infrastructure initialized")
 }

@@ -2,6 +2,7 @@ package events
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/jybbang/go-core-architecture/core"
 	"github.com/jybbang/nexinterface/src/entities"
@@ -24,7 +25,7 @@ func NewBookCreatedEvent(source *entities.Book) *BookCreatedEvent {
 func BookCreatedEventHandler(ctx context.Context, notification interface{}) error {
 	event := notification.(*BookCreatedEvent)
 
-	core.Log.Infow("event handler", "topic", event.Topic)
+	fmt.Printf("%+v\n", event)
 
 	return nil
 }

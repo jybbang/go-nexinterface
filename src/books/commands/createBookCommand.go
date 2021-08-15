@@ -12,7 +12,7 @@ import (
 type CreateBookCommand struct {
 	Title  string `validate:"required"`
 	Author string `validate:"required"`
-	Price  int    `validate:gte=0"`
+	Price  int    `validate:"gte=0"`
 }
 
 func CreateBookCommandHandler(ctx context.Context, request interface{}) core.Result {
