@@ -16,7 +16,8 @@ func applicationSetup() {
 		Build()
 
 	mediator.
-		AddMiddleware(middlewares.NewLogMiddleware())
+		AddMiddleware(middlewares.NewLogMiddleware()).
+		AddMiddleware(middlewares.NewValidationMiddleware())
 
 	Log.Info("application initialized")
 }

@@ -29,9 +29,9 @@ func main() {
 
 	// demo
 	cmd := &commands.CreateBookCommand{
-		Title:  "test title",
-		Author: "JYB",
-		Price:  123,
+		Title: "test title",
+		// Author: "JYB",
+		Price: -1,
 	}
 
 	ctx := context.Background()

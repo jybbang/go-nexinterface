@@ -7,9 +7,9 @@ import (
 
 type Book struct {
 	core.Entity
-	Title  string  `bson:"title,omitempty"`
-	Author string  `bson:"author,omitempty"`
-	Price  float64 `bson:"price,omitempty"`
+	Title  string `bson:"title,omitempty"`
+	Author string `bson:"author,omitempty"`
+	Price  int    `bson:"price,omitempty"`
 }
 
 type BookState struct {
