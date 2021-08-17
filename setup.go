@@ -11,7 +11,7 @@ import (
 )
 
 func applicationSetup() {
-	mediatorBuilder := core.NewMediatorBuilder().AddPerformanceMeasure(logger)
+	mediatorBuilder := core.NewMediatorBuilder()
 
 	// books
 	mediatorBuilder.
@@ -25,7 +25,8 @@ func applicationSetup() {
 	mediatorBuilder.
 		Build().
 		AddMiddleware(middlewares.NewLogMiddleware(logger)).
-		AddMiddleware(middlewares.NewValidationMiddleware())
+		AddNext(middlewares.NewPerformanceMiddleware(logger)).
+		AddNext(middlewares.NewValidationMiddleware())
 
 	log.Info("application initialized")
 }

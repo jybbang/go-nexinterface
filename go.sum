@@ -283,6 +283,12 @@ github.com/julienschmidt/httprouter v1.3.0/go.mod h1:JR6WtHb+2LUe8TCKY3cZOxFyyO8
 github.com/jung-kurt/gofpdf v1.0.3-0.20190309125859-24315acbbda5/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+r32jIOes=
 github.com/jybbang/go-core-architecture v0.4.1 h1:mtVRBNLUfmTK0+fBL9TCv3DdUvkJBuQBsHhK14STeII=
 github.com/jybbang/go-core-architecture v0.4.1/go.mod h1:fCS4+eOHfSWdmsb2bll17gv13jGj7X+N0N7oPlUWyDw=
+github.com/jybbang/go-core-architecture v0.5.0 h1:NDfpuRYlK/MEDhItM7Zy79xbbPJxSsNehoFP7z3ZA5U=
+github.com/jybbang/go-core-architecture v0.5.0/go.mod h1:fCS4+eOHfSWdmsb2bll17gv13jGj7X+N0N7oPlUWyDw=
+github.com/jybbang/go-core-architecture v0.5.1 h1:DJKWhTBTwkxFfrsTug/NIW4SgADgWOFEVkn0yY5toOQ=
+github.com/jybbang/go-core-architecture v0.5.1/go.mod h1:fCS4+eOHfSWdmsb2bll17gv13jGj7X+N0N7oPlUWyDw=
+github.com/jybbang/go-core-architecture v0.5.2 h1:jGzZBdK0Ez4+gIptWIlk41j+AFesGVaIn+A7ZCggpBM=
+github.com/jybbang/go-core-architecture v0.5.2/go.mod h1:fCS4+eOHfSWdmsb2bll17gv13jGj7X+N0N7oPlUWyDw=
 github.com/karrick/godirwalk v1.8.0/go.mod h1:H5KPZjojv4lE+QYImBI8xVtrBRgYrIVsaRPx4tDPEn4=
 github.com/karrick/godirwalk v1.10.3/go.mod h1:RoGL9dQei4vP9ilrpETWE8CLOZ1kiN0LhBygSwrAsHA=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
