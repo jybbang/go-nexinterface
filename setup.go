@@ -6,17 +6,24 @@ import (
 	"github.com/jybbang/go-core-architecture/middlewares"
 	"github.com/jybbang/nexinterface/src/books/commands"
 	"github.com/jybbang/nexinterface/src/books/events"
+	"github.com/jybbang/nexinterface/src/books/queries"
 	"github.com/jybbang/nexinterface/src/entities"
 )
 
 func applicationSetup() {
-	mediator := core.NewMediatorBuilder().
-		AddPerformanceMeasure(logger).
-		AddHandler(new(commands.CreateBookCommand), commands.CreateBookCommandHandler).
-		AddNotificationHandler(new(events.BookCreatedEvent), events.BookCreatedEventHandler).
-		Build()
+	mediatorBuilder := core.NewMediatorBuilder().AddPerformanceMeasure(logger)
 
-	mediator.
+	// books
+	mediatorBuilder.
+		AddHandler(new(commands.CreateBookCommand), commands.CreateBookCommandHandler).
+		AddHandler(new(commands.DeleteBookCommand), commands.DeleteBookCommandHandler).
+		AddHandler(new(queries.GetBooksQuery), queries.GetBooksQueryHandler).
+		AddHandler(new(queries.GetBookQuery), queries.GetBookQueryHandler).
+		AddNotificationHandler(new(events.BookCreatedEvent), events.BookCreatedEventHandler).
+		AddNotificationHandler(new(events.BookDeletedEvent), events.BookDeletedEventHandler)
+
+	mediatorBuilder.
+		Build().
 		AddMiddleware(middlewares.NewLogMiddleware(logger)).
 		AddMiddleware(middlewares.NewValidationMiddleware())
 

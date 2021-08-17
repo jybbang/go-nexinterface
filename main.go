@@ -1,10 +1,8 @@
 package main
 
 import (
-	"context"
-
-	"github.com/jybbang/go-core-architecture/core"
-	"github.com/jybbang/nexinterface/src/books/commands"
+	"github.com/gin-gonic/gin"
+	v1 "github.com/jybbang/nexinterface/src/controllers/v1"
 	"go.uber.org/zap"
 )
 
@@ -12,11 +10,8 @@ var logger *zap.Logger
 var log *zap.SugaredLogger
 
 func init() {
-	logger, _ = zap.NewDevelopment()
+	logger, _ = zap.NewProduction()
 	log = logger.Sugar()
-
-	core.AddMetrics(core.MetricsSettings{Endpoint: "/metrics"})
-	core.AddTracing(core.TracingSettings{ServiceName: "demo"})
 
 	applicationSetup()
 	infrastructureSetup()
@@ -26,16 +21,12 @@ func main() {
 	log.Info("program start")
 	defer log.Info("program end")
 
-	// demo
-	cmd := &commands.CreateBookCommand{
-		Title:  "test title",
-		Author: "JYB",
-		Price:  10000,
+	router := gin.Default()
+
+	apiV1 := router.Group("/api/v1")
+	{
+		v1.AddBookController(apiV1)
 	}
 
-	ctx := context.Background()
-	book := core.GetMediator().Send(ctx, cmd)
-	log.Info(book.V, book.E)
-
-	// http.ListenAndServe(":9000", nil)
+	router.Run(":9000")
 }

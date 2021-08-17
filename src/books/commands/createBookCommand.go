@@ -25,10 +25,11 @@ func CreateBookCommandHandler(ctx context.Context, request interface{}) core.Res
 	dto.Price = command.Price
 
 	repository := core.GetRepositoryService(dto)
-	repository.Add(ctx, dto)
+	result := repository.Add(ctx, dto)
+	if result.E != nil {
+		return result
+	}
 
 	core.GetEventbus().AddDomainEvent(events.NewBookCreatedEvent(dto))
-
-	repository.Find(ctx, dto.ID, dto)
-	return core.Result{V: dto}
+	return repository.Find(ctx, dto.ID, dto)
 }

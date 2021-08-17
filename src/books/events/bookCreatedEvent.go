@@ -23,9 +23,6 @@ func NewBookCreatedEvent(source *entities.Book) *BookCreatedEvent {
 }
 
 func BookCreatedEventHandler(ctx context.Context, notification interface{}) error {
-	event := notification.(*BookCreatedEvent)
-
-	fmt.Printf("%+v\n", event)
-
+	fmt.Println("📘 book created 👍")
 	return nil
 }
