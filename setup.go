@@ -17,14 +17,14 @@ func applicationSetup() {
 		Build()
 
 	mediator.
-		AddMiddleware(middlewares.NewZapLogMiddleware(logger)).
+		AddMiddleware(middlewares.NewLogMiddleware(logger)).
 		AddMiddleware(middlewares.NewValidationMiddleware())
 
 	log.Info("application initialized")
 }
 
 func infrastructureSetup() {
-	mock := mocks.NewMockAdapter(mocks.MockSettings{Log: log})
+	mock := mocks.NewMockAdapter()
 
 	core.NewEventbusBuilder().
 		MessaingAdapter(mock).
@@ -34,7 +34,7 @@ func infrastructureSetup() {
 		StateAdapter(mock).
 		Build()
 
-	core.NewRepositoryServiceBuilder(new(entities.Book)).
+	core.NewRepositoryServiceBuilder(new(entities.Book), "T_BOOK").
 		QueryRepositoryAdapter(mock).
 		CommandRepositoryAdapter(mock).
 		Build()

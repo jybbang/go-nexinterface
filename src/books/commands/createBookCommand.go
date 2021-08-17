@@ -29,6 +29,6 @@ func CreateBookCommandHandler(ctx context.Context, request interface{}) core.Res
 
 	core.GetEventbus().AddDomainEvent(events.NewBookCreatedEvent(dto))
 
-	repository.Find(ctx, dto, dto.ID)
+	repository.Find(ctx, dto.ID, dto)
 	return core.Result{V: dto}
 }
