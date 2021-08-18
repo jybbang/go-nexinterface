@@ -37,7 +37,7 @@ func applicationSetup() {
 func infrastructureSetup() {
 	mock := mocks.NewMockAdapter()
 
-	core.NewEventbusBuilder().
+	core.NewEventBusBuilder().
 		MessaingAdapter(mock).
 		Build()
 

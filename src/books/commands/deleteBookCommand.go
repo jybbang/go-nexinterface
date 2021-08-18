@@ -20,6 +20,6 @@ func DeleteBookCommandHandler(ctx context.Context, request interface{}) core.Res
 	repository := core.GetRepositoryService(new(entities.Book))
 	result := repository.Remove(ctx, id)
 
-	core.GetEventbus().AddDomainEvent(events.NewBookDeletedEvent(id))
+	core.GetEventBus().AddDomainEvent(events.NewBookDeletedEvent(id))
 	return result
 }
