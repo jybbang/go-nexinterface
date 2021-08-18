@@ -1,6 +1,9 @@
 package v1
 
 import (
+	"context"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jybbang/go-core-architecture/core"
 	"github.com/jybbang/nexinterface/src/books/commands"
@@ -37,9 +40,18 @@ func getBook(c *gin.Context) {
 
 func createBook(c *gin.Context) {
 	cmd := new(commands.CreateBookCommand)
-	c.BindJSON(cmd)
+	c.ShouldBind(cmd)
 
-	result := core.GetMediator().Send(c, cmd)
+	var cc context.Context
+	key := http.CanonicalHeaderKey("Userid")
+	userId := c.Request.Header[key]
+	if len(userId) > 0 {
+		cc = context.WithValue(c, key, userId[0])
+	} else {
+		cc = c
+	}
+
+	result := core.GetMediator().Send(cc, cmd)
 
 	c.JSON(result.ToHttpStatus(), result.V)
 }

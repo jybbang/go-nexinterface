@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/jybbang/go-core-architecture/core"
 	"github.com/jybbang/go-core-architecture/infrastructure/mocks"
 	"github.com/jybbang/go-core-architecture/middlewares"
@@ -25,8 +27,9 @@ func applicationSetup() {
 	mediatorBuilder.
 		Build().
 		AddMiddleware(middlewares.NewLogMiddleware(logger)).
-		AddNext(middlewares.NewPerformanceMiddleware(logger)).
-		AddNext(middlewares.NewValidationMiddleware())
+		AddNext(middlewares.NewPerformanceMiddleware(logger, time.Duration(500*time.Millisecond))).
+		AddNext(middlewares.NewValidationMiddleware()).
+		AddNext(middlewares.NewPublishDomainEventsMiddleware())
 
 	log.Info("application initialized")
 }
